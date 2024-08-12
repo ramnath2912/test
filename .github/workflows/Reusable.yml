@@ -10,6 +10,12 @@ on:
         default: 'job1'
 
 jobs:
+  job0:
+    if: ${{ inputs.job_name == 'job0' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job 0
+        run: echo "Running Job 0"
   job1:
     if: ${{ inputs.job_name == 'job1' }}
     runs-on: ubuntu-latest
@@ -18,6 +24,7 @@ jobs:
         run: echo "Running Job 1"
 
   job2:
+    needs: [job0]
     if: ${{ inputs.job_name == 'job2' }}
     runs-on: ubuntu-latest
     steps:
