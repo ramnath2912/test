@@ -1,0 +1,29 @@
+name: Reusable Workflow with Outputs
+
+on:
+  workflow_call:
+    inputs:
+      job_name:
+        description: 'Name of the job to run'
+        required: true
+        type: string
+        default: 'job1'
+
+jobs:
+  job1:
+    if: ${{ inputs.job_name == 'job1' }}
+    runs-on: ubuntu-latest
+    outputs:
+      data: ${{ steps.extract.outputs.data }}
+    steps:
+      - name: Generate data
+        id: extract
+        run: echo "::set-output name=data::Hello from Job 1"
+
+  job2:
+    if: ${{ inputs.job_name == 'job2' }}
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use data from Job 1
+        run: echo "Received data:${{ needs.job1.outputs.data }}"
