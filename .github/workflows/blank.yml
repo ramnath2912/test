@@ -4,8 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-specific-job:
-    uses: ./.github/workflows/Reusable.yml
+  run-jobs:
+    uses: ./.github/workflows/reusable1.yml
     with:
-      job_name: 'job2'  # Specify the job you want to run
+      job_name: 'job1'
+
+  use-job2:
+    uses: ./.github/workflows/reusable1.yml
+    needs: run-jobs
+    with:
+      job_name: 'job2'
 
