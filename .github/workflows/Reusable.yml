@@ -1,0 +1,25 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      job_name:
+        description: 'Name of the job to run'
+        required: true
+        type: string
+        default: 'job1'
+
+jobs:
+  job1:
+    if: ${{ inputs.job_name == 'job1' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job 1
+        run: echo "Running Job 1"
+
+  job2:
+    if: ${{ inputs.job_name == 'job2' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Job 2
+        run: echo "Running Job 2"
