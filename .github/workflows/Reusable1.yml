@@ -24,11 +24,8 @@ jobs:
 
   job2:
     if: ${{ inputs.job_name == 'job2' }}
-    needs: job1
     runs-on: ubuntu-latest
     steps:
       - name: Debug job_name
         run: echo "Job Name:${{ inputs.job_name }}"
-      - name: Use data from Job 1
-        run: echo "Received data:${{ needs.job1.outputs.data }}"
 
