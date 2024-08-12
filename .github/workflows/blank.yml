@@ -1,0 +1,11 @@
+name: Call Reusable Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-specific-job:
+    uses: ./.github/workflows/Reusable.yml
+    with:
+      job_name: 'job2'  # Specify the job you want to run
+
