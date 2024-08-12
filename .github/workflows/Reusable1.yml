@@ -14,11 +14,13 @@ jobs:
     if: ${{ inputs.job_name == 'job1' }}
     runs-on: ubuntu-latest
     outputs:
-      data: ${{ steps.extract.outputs.data }}
+      data: ${{ steps.generate.outputs.data }}
     steps:
       - name: Generate data
-        id: extract
-        run: echo "::set-output name=data::Hello from Job 1"
+        id: generate
+        run: |
+          echo "Hello from Job 1" > data.txt
+          echo "data=$(cat data.txt)" >> $GITHUB_ENV
 
   job2:
     if: ${{ inputs.job_name == 'job2' }}
@@ -26,4 +28,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use data from Job 1
-        run: echo "Received data:${{ needs.job1.outputs.data }}"
+        run: echo "Received data: ${{ needs.job1.outputs.data }}"
