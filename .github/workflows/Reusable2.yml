@@ -12,7 +12,6 @@ on:
 
 jobs:
   job1:
-    if: ${{ inputs.job_name == 'job1' }}
     runs-on: ubuntu-latest
     outputs:
       data: ${{ steps.generate.outputs.data }}
@@ -27,4 +26,4 @@ jobs:
     needs: job1
     steps:
       - name: Use data from Job 1
-        run: echo "Received data: ${{ inputs.job1_data }}"
+        run: echo "Received data:${{ inputs.job1_data }}"
