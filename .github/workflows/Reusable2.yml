@@ -1,0 +1,30 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      job_name:
+        required: true
+        type: string
+      job1_data:
+        required: false
+        type: string
+
+jobs:
+  job1:
+    if: ${{ inputs.job_name == 'job1' }}
+    runs-on: ubuntu-latest
+    outputs:
+      data: ${{ steps.generate.outputs.data }}
+    steps:
+      - name: Generate data
+        id: generate
+        run: echo "data=Hello from Job 1" >> $GITHUB_ENV
+
+  job2:
+    if: ${{ inputs.job_name == 'job2' }}
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Use data from Job 1
+        run: echo "Received data: ${{ inputs.job1_data }}"
