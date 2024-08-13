@@ -19,7 +19,7 @@ jobs:
         id: generate
         run: |
           echo "Hello from Job 1" > data.txt
-          echo "data=$(cat data.txt)" >> $GITHUB_ENV
+          echo "data=$(cat data.txt)" >> $GITHUB_OUTPUT
 
   job2:
     if: ${{ inputs.job_name == 'job2' }}
