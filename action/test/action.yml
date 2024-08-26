@@ -1,0 +1,15 @@
+name:  Start/Stop Service composite
+description: Start/Stop Service composite
+inputs:
+    subscription:
+      description: Subscription Name
+      required: true
+      type: string
+
+runs:
+  using: "composite"
+  steps:
+    - name: Service test
+      id: Service_test
+      run: |
+        echo "Test the "
