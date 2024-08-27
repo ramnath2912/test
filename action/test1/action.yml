@@ -17,5 +17,5 @@ runs:
         echo "echo the inputs: ${{inputs.example_input}}"
 
     - name: call the workflow
-      uses: ./.github/workflows/call_in_action_helper.yml@main
+      uses: ramnath2912/.github/workflows/call_the_action.yml@main
 
