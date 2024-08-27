@@ -1,0 +1,24 @@
+
+name: Reusable Workflow with Outputs
+
+on:
+  workflow_call:
+    inputs:
+      job_name:
+        description: 'Name of the job to run'
+        required: true
+        type: string
+        default: 'job1'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      data: ${{ steps.generate.outputs.data }}
+    steps:
+      - name: Generate data
+        id: generate
+        run: |
+          echo "Hello from Job 1" > data.txt
+          echo "data=$(cat data.txt)" >> $GITHUB_OUTPUT
+
