@@ -11,6 +11,7 @@ runs:
   steps:
     - name: Service test
       id: Service_test
+      shell: bash
       run: |
         echo "run the test1"
         echo "echo the inputs: ${{inputs.example_input}}"
