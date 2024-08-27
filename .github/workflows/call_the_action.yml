@@ -1,0 +1,26 @@
+name: Manual Trigger Example
+on:
+    workflow_dispatch:
+      inputs:
+        example_input:
+          description: 'An example input'
+          required: true
+          default: 'default_value'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+  
+    - name: Run a custom action
+      uses: ./action/test1
+      with:
+        example_input: ${{ inputs.example_input }}
+  
