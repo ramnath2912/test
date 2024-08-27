@@ -1,14 +1,8 @@
 
-name: Reusable Workflow with Outputs
+name: call in action
 
 on:
   workflow_call:
-    inputs:
-      job_name:
-        description: 'Name of the job to run'
-        required: true
-        type: string
-        default: 'job1'
 
 jobs:
   job1:
