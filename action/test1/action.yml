@@ -16,3 +16,6 @@ runs:
         echo "run the test1"
         echo "echo the inputs: ${{inputs.example_input}}"
 
+    - name: call the workflow
+      uses: ./.github/workflows/call_in_action_helper.yml
+
