@@ -1,8 +1,8 @@
 name:  Start/Stop Service composite
 description: Start/Stop Service composite
 inputs:
-    job_name:
-      description: job Name
+    example_input:
+      description: example input
       required: true
       type: string
 
@@ -13,5 +13,5 @@ runs:
       id: Service_test
       run: |
         echo "run the test1"
-    - name: call the workflow
-      uses: ./.github/workflows/call_in_action.yml
+        echo "echo the inputs: ${{inputs.example_input}}"
+
