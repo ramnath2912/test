@@ -5,7 +5,10 @@ on:
 
 jobs:
   use-job2:
-    uses: ./.github/workflows/Reusable1.yml
-    with:
-      job_name: 'job2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "test ${{vars.TESTVALUE}}"
+        
+
 
